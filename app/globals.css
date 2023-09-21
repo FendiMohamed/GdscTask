@@ -1,0 +1,380 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+body {
+	margin: 0;
+	--color-text: #000;
+	--color-text-alt: #3e4843;
+	--color-heading-main: #000;
+	--color-heading-main-alt: #fff;
+	--color-heading-sub: #374b41;
+	--color-bg-menu: #000;
+	--color-link: #000;
+	--color-link-alt: #3e4843;
+	--color-link-hover: #000;
+	--color-link-alt-hover: #fff;
+	--color-button-menu: #000;
+	--color-button-close: #fff;
+	background: linear-gradient(to right, #5a247a 0%,#4f2475 25%,#45236e 60%,#3f2469 83%,#342161 100%); 
+	background-size:  100%;
+	animation: bg 15s linear infinite ;
+	font-family: meno-banner, serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+@keyframes bg{
+	0%{
+			background-position-x: 0;
+	}
+	
+	100%{
+			background-position-x: 100%;
+	}
+}
+
+
+main {
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: 100vh;
+}
+
+.frame {
+	grid-area: 1 / 1 / 2 / 2;
+	z-index: 100;
+	display: grid;
+	align-content: space-between;
+	align-items: center;
+	height: 100vh;
+	padding: 1rem 1rem 0.5rem 1rem;
+	pointer-events: none;
+	font-size: 1rem;
+	grid-template-columns: repeat(4,25%);
+	grid-template-rows: auto auto 1fr auto;
+	grid-template-areas: 'author heading heading button'
+						'... ... ... ...';	
+}
+
+.frame--menu-open {
+	color: var(--color-text-alt);
+	--color-link: var(--color-link-alt);
+	--color-link-hover: var(--color-link-alt-hover);
+	--color-heading-main: var(--color-heading-main-alt);
+}
+
+.frame__author {
+	margin: 0;
+	grid-area: author;
+}
+
+.frame__button {
+	justify-self: end;
+	grid-area: button;
+}
+
+.frame--menu-open .frame__author {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.frame__heading {
+	grid-area: heading;
+	text-align: center;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	white-space: nowrap;
+	justify-self: center;
+} 
+
+.frame__heading-main {
+	line-height: 0.8;
+	display: block;
+	font-size: 1.5rem;
+	color: var(--color-heading-main);
+}
+
+.frame__heading-sub {
+	font-size: 0.75rem;
+	line-height: 1;
+	color: var(--color-heading-sub);
+}
+
+.frame--menu-open .frame__heading-sub {
+	pointer-events: none;
+	opacity: 0;
+}
+
+.frame a,
+.frame button {
+	pointer-events: auto;
+}
+
+.button-menu {
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	display: inline-grid;
+	place-items: center;
+	border: 1px solid var(--color-button-menu);
+	fill: var(--color-button-menu);
+}
+
+.button-menu svg {
+	transition: transform 0.5s ease;
+}
+
+.button-menu:focus-visible,
+.button-menu:hover {
+	fill: #5a247a ;
+	border-color: #5a247a;
+}
+
+.button-menu:hover svg {
+	transform: scale(1.1);
+}
+
+.frame--menu-open .button-menu {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.content {
+	grid-area: 1 / 1 / 2 / 2;
+}
+.contentdiv {
+	display: flex;
+	flex-direction: column;
+	width: 100vw;
+	position: relative;
+	align-items: center;
+	height: 100vh;
+	justify-content: center;
+}
+.contentdiv2 {
+  margin: 10vh 0 0 0;
+  overflow: scroll;
+}
+
+.content__title {
+	font-weight: 400;
+	text-align: center;
+	font-size: 7.5vw;
+	line-height: 0.75;
+	cursor: default;
+}
+
+.content__title-main {
+  width: 100% !important;
+		display: flex;
+align-items: center;
+justify-content: center;
+    will-change: opacity, transform;
+}
+.cc {
+    will-change: opacity, transform;
+}
+
+
+.content__title-sub {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	filter:drop-shadow(2px -2px  #5a247a);
+	will-change: opacity, transform;
+	-webkit-filter:drop-shadow(2px -2px  #5a247a);
+}
+
+.menu-wrap {
+	grid-area: 1 / 1 / 2 / 2;
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: 100%;
+	position: relative;
+	background: var(--color-bg-menu);
+	pointer-events: none;
+	opacity: 0;
+}
+
+.menu-wrap.menu-wrap--open {
+	pointer-events: auto;
+	opacity: 1;
+}
+
+.overlay {
+	grid-area: 1 / 1 / 2 / 2;
+	position: relative;
+	z-index: 1000;
+	pointer-events: none;
+	width: 100%;
+	height: 100%;
+}
+
+.menu {
+	grid-area: 1 / 1 / 2 / 2;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+
+.menu__item {
+	font-size: 9vw;
+	color: #fff;
+	cursor: pointer;
+	line-height: 1;
+	font-weight: 300;
+    text-align: right;
+    position: relative;
+    will-change: opacity, transform;
+}
+
+.button-close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 2rem;
+	stroke: var(--color-button-close);
+	fill: none;
+}
+
+.button-close:focus-visible,
+.button-close:hover {
+	stroke: #682781;
+}
+
+.menu__itemm {
+	flex: none;
+	margin-right: 4rem;
+	padding: 0 2rem 0 0;
+}
+
+.menu__itemm-inner {
+	white-space: nowrap;
+	position: relative;
+	cursor: pointer;
+	font-size: 7vw;
+	padding: 0.5rem;
+	display: block;
+	color: white;
+	transition: transform 0.2s;
+}
+
+.menu__itemm-inner:hover {
+	font-style: italic;
+	transform: translate3d(2rem,0,0);
+	color: #682781;
+}
+
+.menu__itemm-inner::before {
+	content: '';
+	top: 55%;
+	width: 3.5rem;
+	height: 1px;
+	background: currentColor;
+	position: absolute;
+	right: calc(100% + 2rem);
+	opacity: 0;
+	pointer-events: none;
+}
+
+.menu__itemm-inner:hover::before {
+	opacity: 1;
+}
+
+.menu__itemm-inner:hover::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -5.5rem;
+	right: 0;
+	height: 100%;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+.slideshow {
+	width: 250px;
+	height: 250px;
+	position: relative;
+}
+
+.blob {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	transition: opacity 1s ease-in-out;
+	background-size: cover;
+	-webkit-background-position: center;
+	background-position: center center;
+	box-shadow: 0 5px 5px 5px #5a247a;
+	animation: animate 5s ease-in-out infinite;
+	transition: all 1s ease-in-out;
+}
+
+.active {
+	opacity: 1;
+}
+
+
+.txt{
+	position: relative;
+	font-size: 50px;
+	text-align: center;
+	font-family: sans-serif;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+
+	margin: 30px auto 10px auto;
+
+}
+@media screen and (max-width: 510px){
+	.txt{
+			font-size: 20px;
+	}
+}
+@media screen and (max-width: 360px){
+	.txt{
+			font-size: 15px;
+	}
+}
+
+@keyframes animate {
+	0%, 100%{
+					border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+	}
+	50%{
+					border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+	}
+}
+
+
+
+@media screen and (min-width: 53em) {
+	.frame {
+		grid-template-columns: 390px 1fr 390px;
+		grid-template-areas: 'author heading button'
+							'... ... ...';	
+		font-size: 1.5rem;
+	}
+	.frame__heading-main {
+		font-size: 2.15rem;
+	}
+	.frame__heading-sub {
+		font-size: 1rem;
+	}
+
+}
+
