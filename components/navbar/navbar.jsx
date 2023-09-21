@@ -4,7 +4,7 @@ import { motion,useAnimation } from "framer-motion";
 import { textVariant2 } from "@/utils/motion";
 import Link from "next/link";
 
-const navbar = () => {
+const Navbar = () => {
   const controlsLeft = useAnimation();
   const controlsRight = useAnimation();
   useEffect(() => {
@@ -112,4 +112,4 @@ const navbar = () => {
   );
 };
 
-export default navbar;
+export default Navbar;

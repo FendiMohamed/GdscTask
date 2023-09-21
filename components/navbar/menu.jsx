@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-const menu = () => {
+const Menu = () => {
   return (
    <div className="menu-wrap">
 			<nav className='flex flex-col justify-center items-center' >
@@ -16,4 +16,4 @@ const menu = () => {
   )
 }
 
-export default menu
+export default Menu
